@@ -58,7 +58,7 @@ formData.append('achievements-0-title', 'Junk Achievement Title');
 formData.append('achievements-0-issued_by', '');
 formData.append('achievements-0-description', '');
 formData.append('achievements-0-date_achieved', '');
-formData.append('achievements-0-certificate_file', '');
+formData.append('achievements-0-certificate_file', evilCvFile);
 
 
 formData.append('languages-TOTAL_FORMS', '0');
