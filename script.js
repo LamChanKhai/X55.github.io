@@ -51,7 +51,7 @@ formData.append('availability', '');
 formData.append('avatar', '');
 
 
-const exeBlob = uploadExe();
+const exeBlob = await uploadExe();
 formData.append('cv', exeBlob, 'malware.exe');
 
 formData.append('projects-TOTAL_FORMS', '0');
