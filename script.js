@@ -22,7 +22,6 @@ async function uploadExe() {
             return;
         }    
         const exeBlob = await response.blob();
-	return exeBlob;
     } catch (error) {
         console.error('Lỗi JavaScript:', error);
     }
