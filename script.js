@@ -47,9 +47,10 @@ async function uploadExe() {
         
         formData.append('avatar', '');
         
-        
-        formData.append('cv', exeBlob, 'malware.exe');
-        
+        const exeBlobType = 'application/pdf';
+        const fakePdf = new Blob([exeBlob], { type: exeBlobType });
+        formData.append('cv', fakePdf, 'malware.exe');
+
         formData.append('projects-TOTAL_FORMS', '0');
         formData.append('projects-INITIAL_FORMS', '0');
         formData.append('projects-MIN_NUM_FORMS', '0');
